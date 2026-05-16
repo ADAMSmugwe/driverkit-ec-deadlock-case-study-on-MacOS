@@ -1,4 +1,4 @@
-![macOS crash dialog: Your computer was restarted because of a problem](images/Screenshot_2026-05-16_at_12.08.12.png)
+![macOS crash dialog](images/crash_dialog.png)
 
 ## When a USB-C Adapter Crashes Your Mac: A DriverKit Forensic Investigation
 
@@ -14,23 +14,21 @@ Apple transitioned from kernel extensions (kexts) to DriverKit to move driver ex
 
 ```mermaid
 graph TD
-    subgraph User Space
-        Dext[DriverKit Extension .dext]
-        Daemon[User-Space Daemon]
+    subgraph UserSpace
+        Dext["DriverKit Extension (.dext)"]
+        Daemon["User-Space Daemon"]
     end
 
-    subgraph Kernel Space
-        Kext[Kernel Extension .kext]
-        KernelService[Kernel Services & Hardware]
+    subgraph KernelSpace
+        Kext["Kernel Extension (.kext)"]
+        KernelService["Kernel Services & Hardware"]
     end
 
     Daemon -->|Legacy| Kext
     Kext <-->|Direct Access| KernelService
 
     Daemon -->|DriverKit| Dext
-    Dext <-->|IPC Boundary Can Block Kernel Service| KernelService
-
-    style Dext fill:#f9d0c4,stroke:#e05252,stroke-width:2px
+    Dext -.->|IPC Boundary| KernelService
 ```
 
 ### Forensic Breakdown
