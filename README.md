@@ -1,4 +1,4 @@
-![macOS crash dialog](images/crash_dialog.png)
+<img src="images/crash_dialog.png" width="600" alt="macOS crash dialog">
 
 ## When a USB-C Adapter Crashes Your Mac: A DriverKit Forensic Investigation
 
